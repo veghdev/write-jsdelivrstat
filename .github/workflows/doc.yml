@@ -1,0 +1,43 @@
+name: Publish documentation
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure git
+        run: |
+          git config --global user.mail docs@github.com
+          git config --global user.name docs
+
+      - name: Switch to gh-pages branch
+        run: |
+          git branch -f gh-pages
+          git switch gh-pages
+          
+      - name: Initialize development environment
+        run: npm install
+
+      - name: Build documentation
+        run: npm run docs
+
+      - name: Push to gh-pages branch
+        run: |
+          git add docs
+          if ! git diff-index --quiet HEAD; then
+            git commit -am 'docs: update'
+            git push -f origin gh-pages
+          fi
+        if: ( github.event_name == 'release' && github.event.action == 'published' ) || github.event_name == 'workflow_dispatch'
