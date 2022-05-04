@@ -1,6 +1,6 @@
 {
   "name": "write-jsdelivrstat",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "write-jsdelivrstat makes it easy to collect, filter and save jsdelivr statistics to csv files.",
   "main": "dist/index.min.js",
   "files": [],
