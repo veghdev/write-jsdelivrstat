@@ -2,9 +2,7 @@
 
 ## Describe your changes
 
-## Type of change
-
-Please delete options that are not relevant.
+## Type of change (Please delete options that are not relevant)
 
 - [ ] Documentation/CI update
 - [ ] Bug fix (non-breaking change which fixes an issue)
